@@ -14,12 +14,7 @@
 
 repos:
 -   repo: https://github.com/google/addlicense
-    rev: 4d548095fcf442f9674a7ca78572fd53bd93c802
+    rev: v1.2.0
     hooks:
     -   id: addlicense
--   repo: local
-    hooks:
-    -   id: addlicense
-        name: Add license header
-        entry: addlicense
-        language: system
+        args: ["-c", "Google LLC", "-f", "LICENSE"]
