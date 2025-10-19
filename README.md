@@ -1,53 +1,64 @@
-# New Project Template
+# Archon Gemini CLI Extension
 
-This repository contains a template that can be used to seed a repository for a
-new Google open source project.
+This extension integrates the Archon workflow directly into the Gemini CLI, providing a seamless experience for managing your projects and tasks.
 
-See [go/releasing](http://go/releasing) (available externally at
-https://opensource.google/documentation/reference/releasing) for more information about
-releasing a new Google open source project.
+## Prerequisites
 
-This template uses the Apache license, as is Google's default.  See the
-documentation for instructions on using alternate license.
+Before you can use this extension, you must have the Archon MCP server running locally.
 
-## How to use this template
+## Installation
 
-1. Clone it from GitHub.
-    * There is no reason to fork it.
-1. Create a new local repository and copy the files from this repo into it.
-1. Modify README.md and docs/contributing.md to represent your project, not the
-   template project.
-1. Develop your new project!
+1.  Install the extension using the `gemini` command:
+    ```shell
+    gemini extensions install https://github.com/cwest/archone-gemini-cli-extension
+    ```
 
-``` shell
-git clone https://github.com/google/new-project
-mkdir my-new-thing
-cd my-new-thing
-git init
-cp -r ../new-project/* ../new-project/.github .
-git add *
-git commit -a -m 'Boilerplate for new Google open source project'
+## Configuration
+
+1.  Open your Gemini CLI `settings.json` file.
+2.  Add the following configuration to connect to your local Archon MCP server:
+    ```json
+    {
+      "mcpServers": {
+        "archon": {
+          "httpUrl": "http://localhost:8051/mcp"
+        }
+      }
+    }
+    ```
+
+## Commands
+
+This extension provides the following custom commands:
+
+-   `/archon:create-plan`: Create a new implementation plan.
+-   `/archon:execute-plan`: Execute an implementation plan.
+-   `/archon:kb-find-docs`: Find documents in the knowledge base.
+-   `/archon:kb-search`: Search the knowledge base.
+-   `/archon:kb-sources`: List available knowledge base sources.
+-   `/archon:primer`: Get a primer on the Archon workflow.
+-   `/archon:project-features`: Get the features of a project.
+-   `/archon:project-find`: Find a project.
+
+## Getting Started
+
+1.  Start your local Archon MCP server.
+2.  Install and configure the extension as described above.
+3.  Open the Gemini CLI and try one of the `/archon` commands, for example:
+    ```shell
+    /archon:project-find
+    ```
+
+## Usage Example with PRDs and PRPs
+
+This repository contains examples of Product Requirements Documents (PRDs) and Project Requirement Plans (PRPs) in the `PRDs` and `PRPs` directories, respectively. PRPs are "Product Requirements Prompts", a concept for structuring requirements for AI agents. You can read more about them in [this article](https://abvijaykumar.medium.com/context-engineering-2-2-product-requirements-prompts-46e6ed0aa0d1).
+
+Once you have a PRD, you can use the `/archon:create-plan` command to generate an implementation plan (PRP):
+```shell
+/archon:create-plan PRDs/01-developer-experience-enhancements.md
 ```
 
-## Source Code Headers
-
-Every file containing source code must include copyright and license
-information. This includes any JS/CSS files that you might be serving out to
-browsers. (This is to help well-intentioned people avoid accidental copying that
-doesn't comply with the license.)
-
-Apache header:
-
-    Copyright 2024 Google LLC
-
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
-
-        https://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+After the plan is created, you can execute it with the `/archon:execute-plan` command:
+```shell
+/archon:execute-plan PRPs/01-developer-experience-enhancements.md
+```

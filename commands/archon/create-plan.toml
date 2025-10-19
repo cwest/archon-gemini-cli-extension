@@ -369,7 +369,7 @@ Write a comprehensive plan to `PRPs/[feature-name].md` with roughly this structu
 - [Future enhancements]
 
 ---
-*This plan is ready for execution with `/execute-plan`*
+*This plan is ready for execution with `/archon:execute-plan`*
 ```
 
 ## Step 5: Validation
@@ -394,5 +394,5 @@ Before finalizing the plan:
 
 Save the plan to the PRPs directory and inform the user:
 "Implementation plan created at: PRPs/[feature-name].md
-You can now execute this plan using: `/execute-plan PRPs/[feature-name].md`"
+You can now execute this plan using: `/archon:execute-plan PRPs/[feature-name].md`"
 """

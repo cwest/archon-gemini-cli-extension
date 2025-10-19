@@ -216,4 +216,11 @@ dependencies = [
 dev = [
     "pre-commit>=4.3.0",
     "ruff>=0.14.1",
+    "poethepoet>=0.27.0",
 ]
+
+[tool.poe.tasks]
+build = "python src/build.py"
+lint = "ruff check ."
+format = "ruff format ."
+test = "pytest"

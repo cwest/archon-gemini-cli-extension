@@ -25,6 +25,33 @@ Guidelines](https://opensource.google/conduct/).
 
 ## Contribution process
 
+### Local Development Setup
+
+1.  Install `uv`:
+    ```shell
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+    ```
+2.  Install dependencies:
+    ```shell
+    uv sync
+    ```
+
+### Task Runner
+
+This project uses `poethepoet` for task management. The following tasks are available:
+
+-   `uv run poe build`: Build the extension.
+-   `uv run poe lint`: Run the linter.
+-   `uv run poe format`: Format the code.
+-   `uv run poe test`: Run the tests.
+
+### Pre-commit Hooks
+
+This project uses pre-commit hooks to enforce code quality. To install the hooks, run:
+```shell
+uv run pre-commit install
+```
+
 ### Code Reviews
 
 All submissions, including submissions by project members, require review. We

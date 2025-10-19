@@ -226,7 +226,9 @@ def ingest_source_repo():
         Repo.clone_from(ARCHON_REPO_URL, ARCHON_REPO_DIR)
         print("Clone complete.")
     else:
-        print(f"Pulling latest changes from Archon repository in '{ARCHON_REPO_DIR}'...")
+        print(
+            f"Pulling latest changes from Archon repository in '{ARCHON_REPO_DIR}'..."
+        )
         try:
             repo = Repo(ARCHON_REPO_DIR)
             origin = repo.remotes.origin
@@ -247,7 +249,9 @@ def transform_context():
         claude_md_path = os.path.join(SOURCE_DIR, "CLAUDE.md")
         if os.path.exists(claude_md_path):
             with open(claude_md_path, "r") as infile:
-                outfile.write(f"--- Context from: {os.path.relpath(claude_md_path)} ---\n")
+                outfile.write(
+                    f"--- Context from: {os.path.relpath(claude_md_path)} ---\n"
+                )
                 outfile.write(infile.read())
                 outfile.write("\n--- End of Context ---\n\n")
         else:
@@ -260,8 +264,12 @@ def transform_context():
                     agent_path = os.path.join(AGENTS_DIR, agent_file)
                     with open(agent_path, "r") as infile:
                         post = frontmatter.load(infile)
-                        persona_name = post.get('persona', os.path.splitext(agent_file)[0])
-                        outfile.write(f"--- Context from: {os.path.relpath(agent_path)} ---\n")
+                        persona_name = post.get(
+                            "persona", os.path.splitext(agent_file)[0]
+                        )
+                        outfile.write(
+                            f"--- Context from: {os.path.relpath(agent_path)} ---\n"
+                        )
                         outfile.write(f"# Persona: {persona_name}\n\n")
                         outfile.write(post.content)
                         outfile.write("\n--- End of Context ---\n\n")
@@ -295,25 +303,30 @@ def transform_commands():
                 # Perform transformations
                 if command_file == "create-plan.md":
                     prompt_content = re.sub(
-                        r'(- Focus on implementation patterns, best practices, and similar features)',
+                        r"(- Focus on implementation patterns, best practices, and similar features)",
                         r"- Use the full suite of Archon's RAG tools including `rag_get_available_sources`, `rag_list_pages_for_source`, and `rag_read_full_page` for deep, targeted research\n\1",
-                        prompt_content
+                        prompt_content,
+                    )
+                    prompt_content = prompt_content.replace(
+                        "/execute-plan", "/archon:execute-plan"
                     )
                 if command_file == "execute-plan.md":
                     prompt_content = re.sub(
                         r'(After ALL tasks are in "review" status:)',
-                        r'\1\n\n**IMPORTANT: Use the `validator` persona to generate unit tests for the implemented code.**',
-                        prompt_content
+                        r"\1\n\n**IMPORTANT: Use the `validator` persona to generate unit tests for the implemented code.**",
+                        prompt_content,
                     )
                 prompt_content = prompt_content.replace("$ARGUMENTS", "{{args}}")
-                prompt_content = re.sub(r'mcp__archon__(\w+)', r'tools.archon.\1', prompt_content)
                 prompt_content = re.sub(
-                    r'Use the (\w+) agent',
+                    r"mcp__archon__(\w+)", r"tools.archon.\1", prompt_content
+                )
+                prompt_content = re.sub(
+                    r"Use the (\w+) agent",
                     r"Adopt the '\1' persona as defined in GEMINI.md",
-                    prompt_content
+                    prompt_content,
                 )
 
-                description = post.get('description', 'No description provided.')
+                description = post.get("description", "No description provided.")
 
                 # Write to .toml file
                 with open(dest_path, "w") as outfile:
