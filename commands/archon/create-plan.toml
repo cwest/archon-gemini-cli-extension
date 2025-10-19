@@ -227,6 +227,7 @@ If Archon RAG is available and relevant:
 - Use `tools.archon.rag_get_available_sources()` to see available documentation
 - Search for relevant patterns: `tools.archon.rag_search_knowledge_base(query="...")`
 - Find code examples: `tools.archon.rag_search_code_examples(query="...")`
+- Use the full suite of Archon's RAG tools including `rag_get_available_sources`, `rag_list_pages_for_source`, and `rag_read_full_page` for deep, targeted research
 - Focus on implementation patterns, best practices, and similar features
 
 ### 2.2 Codebase Analysis (for existing projects)

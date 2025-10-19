@@ -201,129 +201,20 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-import os
-import frontmatter
-import re
-from git import Repo, GitCommandError
+description = "Get features for a project."
 
-# --- Constants ---
-ARCHON_REPO_URL = "https://github.com/coleam00/Archon.git"
-ARCHON_REPO_DIR = "archon_source"
-SOURCE_DIR = os.path.join(ARCHON_REPO_DIR, "archon-example-workflow")
-AGENTS_DIR = os.path.join(SOURCE_DIR, ".claude", "agents")
-COMMANDS_DIR = os.path.join(SOURCE_DIR, ".claude", "commands")
-OUTPUT_GEMINI_MD = "GEMINI.md"
-OUTPUT_COMMANDS_DIR = os.path.join("commands", "archon")
+prompt = """
+# Get Project Features
 
+You are about to get the features for a project.
 
-def ingest_source_repo():
-    """
-    Clones the Archon repository if it doesn't exist locally, or pulls the
-    latest changes if it does.
-    """
-    if not os.path.exists(ARCHON_REPO_DIR):
-        print(f"Cloning Archon repository into '{ARCHON_REPO_DIR}'...")
-        Repo.clone_from(ARCHON_REPO_URL, ARCHON_REPO_DIR)
-        print("Clone complete.")
-    else:
-        print(f"Pulling latest changes from Archon repository in '{ARCHON_REPO_DIR}'...")
-        try:
-            repo = Repo(ARCHON_REPO_DIR)
-            origin = repo.remotes.origin
-            origin.pull()
-            print("Pull complete.")
-        except GitCommandError as e:
-            print(f"Error pulling latest changes: {e}")
+## Description
+This command allows you to see the features of a project.
 
+## Usage
+`/archon:project features <project_id>`
 
-def transform_context():
-    """
-    Reads the CLAUDE.md and agent files from the source repository and
-    generates the GEMINI.md file.
-    """
-    print(f"Generating '{OUTPUT_GEMINI_MD}'...")
-    with open(OUTPUT_GEMINI_MD, "w") as outfile:
-        # 1. Add the CLAUDE.md content
-        claude_md_path = os.path.join(SOURCE_DIR, "CLAUDE.md")
-        if os.path.exists(claude_md_path):
-            with open(claude_md_path, "r") as infile:
-                outfile.write(f"--- Context from: {os.path.relpath(claude_md_path)} ---\n")
-                outfile.write(infile.read())
-                outfile.write("\n--- End of Context ---\n\n")
-        else:
-            print(f"Warning: '{claude_md_path}' not found.")
-
-        # 2. Add the agent files content
-        if os.path.isdir(AGENTS_DIR):
-            for agent_file in sorted(os.listdir(AGENTS_DIR)):
-                if agent_file.endswith(".md"):
-                    agent_path = os.path.join(AGENTS_DIR, agent_file)
-                    with open(agent_path, "r") as infile:
-                        post = frontmatter.load(infile)
-                        persona_name = post.get('persona', os.path.splitext(agent_file)[0])
-                        outfile.write(f"--- Context from: {os.path.relpath(agent_path)} ---\n")
-                        outfile.write(f"# Persona: {persona_name}\n\n")
-                        outfile.write(post.content)
-                        outfile.write("\n--- End of Context ---\n\n")
-        else:
-            print(f"Warning: Agent directory '{AGENTS_DIR}' not found.")
-    print(f"'{OUTPUT_GEMINI_MD}' generated successfully.")
-
-
-def transform_commands():
-    """
-    Parses all command Markdown files from the source, transforms their
-    content, and writes the corresponding .toml files.
-    """
-    print(f"Generating command files in '{OUTPUT_COMMANDS_DIR}'...")
-    os.makedirs(OUTPUT_COMMANDS_DIR, exist_ok=True)
-
-    if not os.path.isdir(COMMANDS_DIR):
-        print(f"Warning: Commands directory '{COMMANDS_DIR}' not found.")
-        return
-
-    for command_file in sorted(os.listdir(COMMANDS_DIR)):
-        if command_file.endswith(".md"):
-            source_path = os.path.join(COMMANDS_DIR, command_file)
-            toml_filename = os.path.splitext(command_file)[0] + ".toml"
-            dest_path = os.path.join(OUTPUT_COMMANDS_DIR, toml_filename)
-
-            with open(source_path, "r") as infile:
-                post = frontmatter.load(infile)
-                prompt_content = post.content
-
-                # Perform transformations
-                if command_file == "create-plan.md":
-                    prompt_content = re.sub(
-                        r'(- Focus on implementation patterns, best practices, and similar features)',
-                        r"- Use the full suite of Archon's RAG tools including `rag_get_available_sources`, `rag_list_pages_for_source`, and `rag_read_full_page` for deep, targeted research\n\1",
-                        prompt_content
-                    )
-                if command_file == "execute-plan.md":
-                    prompt_content = re.sub(
-                        r'(After ALL tasks are in "review" status:)',
-                        r'\1\n\n**IMPORTANT: Use the `validator` persona to generate unit tests for the implemented code.**',
-                        prompt_content
-                    )
-                prompt_content = prompt_content.replace("$ARGUMENTS", "{{args}}")
-                prompt_content = re.sub(r'mcp__archon__(\w+)', r'tools.archon.\1', prompt_content)
-                prompt_content = re.sub(
-                    r'Use the (\w+) agent',
-                    r"Adopt the '\1' persona as defined in GEMINI.md",
-                    prompt_content
-                )
-
-                description = post.get('description', 'No description provided.')
-
-                # Write to .toml file
-                with open(dest_path, "w") as outfile:
-                    outfile.write(f'description = """{description}"""\n\n')
-                    outfile.write(f'prompt = """\n{prompt_content}\n"""\n')
-
-    print("Command files generated successfully.")
-
-
-if __name__ == "__main__":
-    ingest_source_repo()
-    transform_context()
-    transform_commands()
+## Action
+- Use the `tools.archon.get_project_features` tool with the provided project ID.
+- The project ID is: `{{args}}`
+"""

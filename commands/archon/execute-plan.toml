@@ -283,6 +283,8 @@ For EACH task in sequence:
 
 After ALL tasks are in "review" status:
 
+**IMPORTANT: Use the `validator` persona to generate unit tests for the implemented code.**
+
 **IMPORTANT: Use the `validator` agent for comprehensive testing**
 1. Launch the validator agent using the Task tool
    - Provide the validator with a detailed description of what was built
