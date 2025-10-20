@@ -33,7 +33,7 @@ Guidelines](https://opensource.google/conduct/).
     ```
 2.  Install dependencies:
     ```shell
-    uv sync
+    uv sync --dev
     ```
 
 ### Task Runner

@@ -227,11 +227,7 @@ jobs:
         run: uv sync --dev
 
       - name: Run build script
-        run: uv run python src/build.py
-
-      - name: Apply pre-commit hooks
-        run: uv run pre-commit run --all-files
-        continue-on-error: true
+        run: uv run poe build
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6

@@ -201,16 +201,38 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "archon-gemini-cli-extension"
 version = "0.1.0"
-description = "Add your description here"
+description = "An Archon-powered Gemini CLI extension for advanced, AI-driven software development workflows."
 readme = "README.md"
 requires-python = ">=3.14.0"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Casey West", email = "casey@geeknest.com" }
+]
+keywords = ["gemini", "cli", "extension", "archon", "ai"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.14",
+]
 dependencies = [
     "gitpython>=3.1.45",
     "python-frontmatter>=1.1.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/cwest/archon-gemini-cli-extension"
+Repository = "https://github.com/cwest/archon-gemini-cli-extension"
+"Bug Tracker" = "https://github.com/cwest/archon-gemini-cli-extension/issues"
+
 
 [dependency-groups]
 dev = [
@@ -220,7 +242,19 @@ dev = [
 ]
 
 [tool.poe.tasks]
-build = "python src/build.py"
+build = [
+    { cmd = "python src/build.py" },
+    { cmd = "pre-commit run --all-files" },
+]
 lint = "ruff check ."
 format = "ruff format ."
 test = "pytest"
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+
+[tool.ruff.format]
+quote-style = "double"

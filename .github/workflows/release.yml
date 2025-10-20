@@ -202,26 +202,24 @@
 #    limitations under the License.
 
 name: Release
-
 on:
   push:
     tags:
-      - 'v*.*.*'
-
+      - 'v*'
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+      - uses: actions/checkout@v4
+      - run: |
+          tar -czf release-${{ github.ref_name }}.tar.gz \
+            GEMINI.md \
+            gemini-extension.json \
+            README.md \
+            LICENSE \
+            commands
+      - run: gh release create ${{ github.ref_name }} --generate-notes release-${{ github.ref_name }}.tar.gz
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false

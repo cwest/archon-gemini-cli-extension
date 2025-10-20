@@ -202,9 +202,10 @@
 #    limitations under the License.
 
 import os
-import frontmatter
 import re
-from git import Repo, GitCommandError
+
+import frontmatter
+from git import GitCommandError, Repo
 
 # --- Constants ---
 ARCHON_REPO_URL = "https://github.com/coleam00/Archon.git"
@@ -303,8 +304,16 @@ def transform_commands():
                 # Perform transformations
                 if command_file == "create-plan.md":
                     prompt_content = re.sub(
-                        r"(- Focus on implementation patterns, best practices, and similar features)",
-                        r"- Use the full suite of Archon's RAG tools including `rag_get_available_sources`, `rag_list_pages_for_source`, and `rag_read_full_page` for deep, targeted research\n\1",
+                        (
+                            r"(- Focus on implementation patterns, best practices, and "
+                            r"similar features)"
+                        ),
+                        (
+                            r"- Use the full suite of Archon's RAG tools including "
+                            r"`rag_get_available_sources`, "
+                            r"`rag_list_pages_for_source`, "
+                            r"and `rag_read_full_page` for deep, targeted research\n\1"
+                        ),
                         prompt_content,
                     )
                     prompt_content = prompt_content.replace(
@@ -313,7 +322,10 @@ def transform_commands():
                 if command_file == "execute-plan.md":
                     prompt_content = re.sub(
                         r'(After ALL tasks are in "review" status:)',
-                        r"\1\n\n**IMPORTANT: Use the `validator` persona to generate unit tests for the implemented code.**",
+                        (
+                            r"\1\n\n**IMPORTANT: Use the `validator` persona to "
+                            r"generate unit tests for the implemented code.**"
+                        ),
                         prompt_content,
                     )
                 prompt_content = prompt_content.replace("$ARGUMENTS", "{{args}}")

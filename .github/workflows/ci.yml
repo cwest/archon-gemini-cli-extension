@@ -227,11 +227,12 @@ jobs:
       - name: Install dependencies
         run: uv sync --dev
 
-      - name: Run pre-commit hooks
-        run: uv run pre-commit run --all-files
-
       - name: Lint with ruff
-        run: uv run -- ruff check .
+        run: uv run poe lint
 
-      - name: Run build script
-        run: uv run -- python src/build.py
+      - name: Run build and pre-commit (1st pass)
+        run: uv run poe build
+        continue-on-error: true
+
+      - name: Run pre-commit (2nd pass)
+        run: uv run pre-commit run --all-files
