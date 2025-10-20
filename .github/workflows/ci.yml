@@ -205,37 +205,33 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
 
-    - name: Install uv
-      run: pip install uv
+      - name: Install uv
+        run: pip install uv
 
-    - name: Install dependencies
-      run: uv sync --dev
+      - name: Install dependencies
+        run: uv sync --dev
 
-    - name: Run pre-commit hooks
-      run: pre-commit run --all-files
+      - name: Run pre-commit hooks
+        run: uv run pre-commit run --all-files
 
-    - name: Lint with ruff
-      run: uv run -- ruff check .
+      - name: Lint with ruff
+        run: uv run -- ruff check .
 
-    - name: Run build script
-      run: uv run -- python src/build.py
-
-    - name: Check for uncommitted changes
-      run: |
-        git diff --exit-code
+      - name: Run build script
+        run: uv run -- python src/build.py

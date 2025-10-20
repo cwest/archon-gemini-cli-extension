@@ -1,0 +1,9 @@
+{
+  "ref": "refs/tags/v0.0.1",
+  "repository": {
+    "name": "archon-gemini-cli-extension",
+    "owner": {
+      "name": "cwest"
+    }
+  }
+}

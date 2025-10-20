@@ -227,10 +227,10 @@ jobs:
         run: uv sync --dev
 
       - name: Run build script
-        run: uv run -- python src/build.py
+        run: uv run python src/build.py
 
       - name: Apply pre-commit hooks
-        run: pre-commit run --all-files
+        run: uv run pre-commit run --all-files
         continue-on-error: true
 
       - name: Create Pull Request
