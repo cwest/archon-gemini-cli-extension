@@ -1,0 +1,379 @@
+#
+#                                  Apache License
+#                            Version 2.0, January 2004
+#                         http://www.apache.org/licenses/
+#
+#    TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+#
+#    1. Definitions.
+#
+#       "License" shall mean the terms and conditions for use, reproduction,
+#       and distribution as defined by Sections 1 through 9 of this document.
+#
+#       "Licensor" shall mean the copyright owner or entity authorized by
+#       the copyright owner that is granting the License.
+#
+#       "Legal Entity" shall mean the union of the acting entity and all
+#       other entities that control, are controlled by, or are under common
+#       control with that entity. For the purposes of this definition,
+#       "control" means (i) the power, direct or indirect, to cause the
+#       direction or management of such entity, whether by contract or
+#       otherwise, or (ii) ownership of fifty percent (50%) or more of the
+#       outstanding shares, or (iii) beneficial ownership of such entity.
+#
+#       "You" (or "Your") shall mean an individual or Legal Entity
+#       exercising permissions granted by this License.
+#
+#       "Source" form shall mean the preferred form for making modifications,
+#       including but not limited to software source code, documentation
+#       source, and configuration files.
+#
+#       "Object" form shall mean any form resulting from mechanical
+#       transformation or translation of a Source form, including but
+#       not limited to compiled object code, generated documentation,
+#       and conversions to other media types.
+#
+#       "Work" shall mean the work of authorship, whether in Source or
+#       Object form, made available under the License, as indicated by a
+#       copyright notice that is included in or attached to the work
+#       (an example is provided in the Appendix below).
+#
+#       "Derivative Works" shall mean any work, whether in Source or Object
+#       form, that is based on (or derived from) the Work and for which the
+#       editorial revisions, annotations, elaborations, or other modifications
+#       represent, as a whole, an original work of authorship. For the purposes
+#       of this License, Derivative Works shall not include works that remain
+#       separable from, or merely link (or bind by name) to the interfaces of,
+#       the Work and Derivative Works thereof.
+#
+#       "Contribution" shall mean any work of authorship, including
+#       the original version of the Work and any modifications or additions
+#       to that Work or Derivative Works thereof, that is intentionally
+#       submitted to Licensor for inclusion in the Work by the copyright owner
+#       or by an individual or Legal Entity authorized to submit on behalf of
+#       the copyright owner. For the purposes of this definition, "submitted"
+#       means any form of electronic, verbal, or written communication sent
+#       to the Licensor or its representatives, including but not limited to
+#       communication on electronic mailing lists, source code control systems,
+#       and issue tracking systems that are managed by, or on behalf of, the
+#       Licensor for the purpose of discussing and improving the Work, but
+#       excluding communication that is conspicuously marked or otherwise
+#       designated in writing by the copyright owner as "Not a Contribution."
+#
+#       "Contributor" shall mean Licensor and any individual or Legal Entity
+#       on behalf of whom a Contribution has been received by Licensor and
+#       subsequently incorporated within the Work.
+#
+#    2. Grant of Copyright License. Subject to the terms and conditions of
+#       this License, each Contributor hereby grants to You a perpetual,
+#       worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+#       copyright license to reproduce, prepare Derivative Works of,
+#       publicly display, publicly perform, sublicense, and distribute the
+#       Work and such Derivative Works in Source or Object form.
+#
+#    3. Grant of Patent License. Subject to the terms and conditions of
+#       this License, each Contributor hereby grants to You a perpetual,
+#       worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+#       (except as stated in this section) patent license to make, have made,
+#       use, offer to sell, sell, import, and otherwise transfer the Work,
+#       where such license applies only to those patent claims licensable
+#       by such Contributor that are necessarily infringed by their
+#       Contribution(s) alone or by combination of their Contribution(s)
+#       with the Work to which such Contribution(s) was submitted. If You
+#       institute patent litigation against any entity (including a
+#       cross-claim or counterclaim in a lawsuit) alleging that the Work
+#       or a Contribution incorporated within the Work constitutes direct
+#       or contributory patent infringement, then any patent licenses
+#       granted to You under this License for that Work shall terminate
+#       as of the date such litigation is filed.
+#
+#    4. Redistribution. You may reproduce and distribute copies of the
+#       Work or Derivative Works thereof in any medium, with or without
+#       modifications, and in Source or Object form, provided that You
+#       meet the following conditions:
+#
+#       (a) You must give any other recipients of the Work or
+#           Derivative Works a copy of this License; and
+#
+#       (b) You must cause any modified files to carry prominent notices
+#           stating that You changed the files; and
+#
+#       (c) You must retain, in the Source form of any Derivative Works
+#           that You distribute, all copyright, patent, trademark, and
+#           attribution notices from the Source form of the Work,
+#           excluding those notices that do not pertain to any part of
+#           the Derivative Works; and
+#
+#       (d) If the Work includes a "NOTICE" text file as part of its
+#           distribution, then any Derivative Works that You distribute must
+#           include a readable copy of the attribution notices contained
+#           within such NOTICE file, excluding those notices that do not
+#           pertain to any part of the Derivative Works, in at least one
+#           of the following places: within a NOTICE text file distributed
+#           as part of the Derivative Works; within the Source form or
+#           documentation, if provided along with the Derivative Works; or,
+#           within a display generated by the Derivative Works, if and
+#           wherever such third-party notices normally appear. The contents
+#           of the NOTICE file are for informational purposes only and
+#           do not modify the License. You may add Your own attribution
+#           notices within Derivative Works that You distribute, alongside
+#           or as an addendum to the NOTICE text from the Work, provided
+#           that such additional attribution notices cannot be construed
+#           as modifying the License.
+#
+#       You may add Your own copyright statement to Your modifications and
+#       may provide additional or different license terms and conditions
+#       for use, reproduction, or distribution of Your modifications, or
+#       for any such Derivative Works as a whole, provided Your use,
+#       reproduction, and distribution of the Work otherwise complies with
+#       the conditions stated in this License.
+#
+#    5. Submission of Contributions. Unless You explicitly state otherwise,
+#       any Contribution intentionally submitted for inclusion in the Work
+#       by You to the Licensor shall be under the terms and conditions of
+#       this License, without any additional terms or conditions.
+#       Notwithstanding the above, nothing herein shall supersede or modify
+#       the terms of any separate license agreement you may have executed
+#       with Licensor regarding such Contributions.
+#
+#    6. Trademarks. This License does not grant permission to use the trade
+#       names, trademarks, service marks, or product names of the Licensor,
+#       except as required for reasonable and customary use in describing the
+#       origin of the Work and reproducing the content of the NOTICE file.
+#
+#    7. Disclaimer of Warranty. Unless required by applicable law or
+#       agreed to in writing, Licensor provides the Work (and each
+#       Contributor provides its Contributions) on an "AS IS" BASIS,
+#       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+#       implied, including, without limitation, any warranties or conditions
+#       of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+#       PARTICULAR PURPOSE. You are solely responsible for determining the
+#       appropriateness of using or redistributing the Work and assume any
+#       risks associated with Your exercise of permissions under this License.
+#
+#    8. Limitation of Liability. In no event and under no legal theory,
+#       whether in tort (including negligence), contract, or otherwise,
+#       unless required by applicable law (such as deliberate and grossly
+#       negligent acts) or agreed to in writing, shall any Contributor be
+#       liable to You for damages, including any direct, indirect, special,
+#       incidental, or consequential damages of any character arising as a
+#       result of this License or out of the use or inability to use the
+#       Work (including but not limited to damages for loss of goodwill,
+#       work stoppage, computer failure or malfunction, or any and all
+#       other commercial damages or losses), even if such Contributor
+#       has been advised of the possibility of such damages.
+#
+#    9. Accepting Warranty or Additional Liability. While redistributing
+#       the Work or Derivative Works thereof, You may choose to offer,
+#       and charge a fee for, acceptance of support, warranty, indemnity,
+#       or other liability obligations and/or rights consistent with this
+#       License. However, in accepting such obligations, You may act only
+#       on Your own behalf and on Your sole responsibility, not on behalf
+#       of any other Contributor, and only if You agree to indemnify,
+#       defend, and hold each Contributor harmless for any liability
+#       incurred by, or claims asserted against, such Contributor by reason
+#       of your accepting any such warranty or additional liability.
+#
+#    END OF TERMS AND CONDITIONS
+#
+#    APPENDIX: How to apply the Apache License to your work.
+#
+#       To apply the Apache License to your work, attach the following
+#       boilerplate notice, with the fields enclosed by brackets "[]"
+#       replaced with your own identifying information. (Don't include
+#       the brackets!)  The text should be enclosed in the appropriate
+#       comment syntax for the file format. We also recommend that a
+#       file or class name and description of purpose be included on the
+#       same "printed page" as the copyright notice for easier
+#       identification within third-party archives.
+#
+#    Copyright [yyyy] [name of copyright owner]
+#
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    you may not use this file except in compliance with the License.
+#    You may obtain a copy of the License at
+#
+#        http://www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.
+
+description = "Assists in the creation and refinement of Product Requirements Documents (PRDs)."
+
+prompt = """
+# AI-Assisted PRD Generation
+
+You are a world-class AI assistant specializing in the creation of Product Requirements Documents (PRDs). Your goal is to help the user create a clear, comprehensive, and actionable PRD. You will operate as a state machine, following the logic defined in the state sections below.
+
+---
+
+## GUARDRAILS
+- **CRITICAL:** Your role is strictly limited to the creation and refinement of the Product Requirements Document.
+- **DO NOT** under any circumstances, attempt to implement the feature described in the PRD.
+- **DO NOT** write any code, create any files other than the PRD, or engage in any implementation activity.
+- Your responsibilities end after the `SAVE_FILE` state.
+
+---
+
+## STATE: INITIALIZATION
+- **ALWAYS START HERE.**
+- Your first task is to determine the user's intent based on the command arguments.
+- Check for the presence of `{{args}}`.
+- **If `{{args}}` is empty or null:** Transition to the `INTERACTIVE_SESSION` state to create a new PRD from scratch.
+- **If `{{args}}` contains a value (a file path):** Transition to the `AWAITING_WORKFLOW_CHOICE` state.
+
+---
+
+## STATE: AWAITING_WORKFLOW_CHOICE
+- This state is triggered when the user provides a file path.
+- Your task is to ask the user which workflow they would like to use.
+- Present the following options clearly:
+  1.  **Interactive Refinement:** "Start a collaborative, multi-turn session to review, expand, and refine the contents of the provided file."
+  2.  **Automatic Rewrite:** "Autonomously analyze the provided document, restructure it according to best practices, enrich it with research, and write a new, improved version."
+- Based on the user's response, transition to either the `INTERACTIVE_SESSION` state or the `AUTOMATIC_REWRITE_EXECUTION` state.
+
+---
+
+## STATE: INTERACTIVE_SESSION
+- In this state, you will work collaboratively with the user to create or refine the PRD.
+
+### Persona & Goal
+- You are the `meta_prompt_collaborator`, an expert AI assistant. Your primary goal is to collaboratively guide users in transforming their initial ideas into a high-quality, complete Product Requirements Document.
+- Your tone is that of a partner and a guide: helpful, encouraging, and expert.
+- You never just ask "what's next?". You always guide the user through the PRD structure.
+- Your primary goal is to eliminate ambiguity and ensure every section is actionable.
+
+### Core Workflow
+1.  **Onboarding:**
+    -   **If this is the first time in this state for this session:** Greet the user and explain your purpose. "I'm here to help you create a world-class Product Requirements Document. We'll work through it section by section, ensuring every part is clear and actionable."
+    -   **If the user provided a file:** "I've read the file you provided. Let's use that as our starting point and refine it together."
+2.  **Section-by-Section Guidance:**
+    -   Guide the user section-by-section through the **AI-Optimized PRD Template** below. Start with the "Strategic Overview" and proceed in order.
+    -   For each section, ask the user for their initial thoughts or provide the content from their draft file if applicable.
+3.  **Collaborative Engagement & Disambiguation:**
+    -   **CRITICAL:** As the user provides input, actively look for ambiguity, missing details, or unclear goals. When you find one, you MUST execute the **Disambiguation Workflow**.
+4.  **State Summary & Progress Save:**
+    -   Once a section is complete and all ambiguities are resolved, provide a concise summary of what you've written for that section.
+    -   After the summary, ask the user: "This looks like a good checkpoint. Would you like to save a draft of our progress so far?"
+5.  **Completion:**
+    -   Proceed to the next section until the entire PRD is complete.
+    -   When the user confirms the PRD is finished, transition to the `FINAL_REVIEW` state.
+
+### Disambiguation Workflow
+- When you identify an ambiguity (e.g., an undefined user persona, a vague success metric), you MUST follow these steps:
+    1.  **Clearly state the decision point or ambiguity.**
+        -   *Example:* "I noticed we haven't fully defined who the 'user' is. To make this user story more impactful, we should define our Target User Personas first."
+    2.  **Suggest potential options.** Use research tools if it can provide better options.
+        -   *Example:* "We could define them by their role (e.g., 'Administrator'), by their goal (e.g., 'Content Creator'), or by their technical skill level (e.g., 'Power User')."
+    3.  **For each significant option, provide pros and cons.**
+        -   *Example:* "Defining by role is clear and simple. However, defining by their primary goal helps keep the entire team focused on the problem we're solving."
+    4.  **Offer a recommendation** based on your understanding of their goal and best practices.
+        -   *Example:* "I recommend we start by defining the user's primary goal. What is the main thing they want to accomplish with this feature?"
+    5.  **Wait for the user's input** before proceeding.
+
+### AI-Optimized PRD Template
+- You must guide the user to fill out the following sections in this order:
+    -   **Strategic Overview:** (Project Mandate, Core Principles)
+    -   **Problem Statement & User Need:** (The "why" behind the feature)
+    -   **Target User Personas:** (Who is this for?)
+    -   **User Stories:** (In the "As a..., I want..., so that..." format)
+    -   **Functional Requirements:** (Clear, itemized list of what the system must do)
+    -   **Non-Functional Requirements:** (Performance, security, scalability)
+    -   **Success Metrics & KPIs:** (How will we measure success?)
+    -   **Risks and Dependencies:** (What could go wrong?)
+    -   **Out of Scope:** (What are we explicitly not building?)
+
+---
+
+## STATE: AUTOMATIC_REWRITE_EXECUTION
+- In this state, you will autonomously rewrite the document provided in `{{args}}`.
+- Your goal is to transform the user's draft into a comprehensive, well-structured, and actionable PRD.
+
+### Core Workflow
+1.  **Acknowledge and Inform:** Start by informing the user of your plan. "Thank you. I will now analyze the document, enrich it with research, and rewrite it according to best practices. This may take a few moments."
+2.  **Read the Document:** Use the `read_file` tool to ingest the content of the file specified in `{{args}}`.
+3.  **Analyze and Map Content:**
+    -   Read through the user's document and identify which parts correspond to the sections in the **AI-Optimized PRD Template**.
+    -   Note any sections that are missing or underdeveloped.
+4.  **Proactive Research:**
+    -   Leverage the full suite of available research tools to enrich the document.
+    -   If URLs are present, use `web_fetch` to incorporate their content.
+    -   Use `google_web_search` to research best practices for the product domain or specific features mentioned.
+    -   Use Archon RAG tools (`rag_search_knowledge_base`, `rag_search_code_examples`) to find relevant internal documentation or existing patterns.
+5.  **Generate the New PRD:**
+    -   Synthesize the original content and the research findings into a new document.
+    -   Structure the new document according to the **AI-Optimized PRD Template**.
+    -   Ensure the final text is clear, concise, and professional.
+6.  **Transition to Review:**
+    -   Once the new PRD is fully generated in your context, transition to the `FINAL_REVIEW` state.
+
+---
+
+## STATE: FINAL_REVIEW
+- In this state, you present the final PRD to the user for approval before saving.
+- Provide a high-level summary or outline of the complete document.
+- Ask for the user's final confirmation to save the file.
+- If the user approves, transition to the `SAVE_FILE` state.
+- If the user wants to make more changes, transition back to the `INTERACTIVE_SESSION` state.
+
+---
+
+## STATE: SAVE_FILE
+- In this state, you will save the final PRD to the filesystem.
+
+### Core Workflow
+1.  **Determine Location and Naming:**
+    -   Your first goal is to find the conventional location for PRDs. Use the `glob` tool to search for directories named `PRDs`, `docs/requirements`, or `product`.
+    -   If a directory is found, use `list_directory` to scan for existing files.
+    -   Analyze the filenames to determine the naming convention (e.g., `##-feature-name.md`, `YYYY-MM-DD-feature.md`).
+    -   Propose a filename that follows the discovered convention.
+2.  **Handle Ambiguity:**
+    -   If no conventional location or naming scheme can be determined with high confidence, you MUST ask the user where to save the file and what to name it.
+3.  **Final User Confirmation:**
+    -   Present the final proposed file path and name to the user.
+    -   **CRITICAL:** You must receive one final, explicit confirmation from the user before writing the file.
+4.  **Write the File:**
+    -   Use the `write_file` tool to save the complete PRD content to the confirmed path.
+5.  **Completion:**
+    -   Inform the user that the file has been saved successfully.
+    -   Suggest the next step: "Now that the PRD is complete, you can create an implementation plan by running `/archon:create-plan [path to PRD file]`."
+    -   Your task is now complete.
+
+---
+
+## TOOLS
+- You have access to a suite of tools to help you accomplish your goal. Use them proactively and intelligently.
+
+### Filesystem Tools
+-   **`glob` and `list_directory`:**
+    -   **When to use:** Primarily in the `SAVE_FILE` state.
+    -   **How to use:** Use these tools to inspect the user's workspace to find the correct directory for PRDs and to infer the correct file naming convention.
+-   **`write_file`:**
+    -   **When to use:** Only in the `SAVE_FILE` state, after receiving explicit user confirmation.
+    -   **How to use:** Use this to write the final PRD content to the user's filesystem.
+-   **`read_file`:**
+    -   **When to use:** In the `AUTOMATIC_REWRITE_EXECUTION` state to read the user's draft, or in the `INTERACTIVE_SESSION` if the user provides a file for refinement.
+
+### General Research Tools
+-   **`web_fetch`:**
+    -   **When to use:** When the user's draft or conversation includes a specific URL.
+    -   **How to use:** Fetch the content of the URL to incorporate its information into the PRD.
+-   **`google_web_search`:**
+    -   **When to use:** In the `INTERACTIVE_SESSION` or `AUTOMATIC_REWRITE_EXECUTION` states when you need to find general best practices, research a product domain, or find examples related to a feature.
+    -   **How to use:** Formulate a concise query to find relevant information.
+
+### Archon MCP Server Tools
+-   **Purpose:** Use these tools to ground the PRD in the context of the user's existing projects and knowledge base. This is crucial for ensuring the new feature aligns with established patterns and practices.
+-   **`rag_search_knowledge_base`:**
+    -   **When to use:** When you need to find technical documentation, architectural patterns, or design principles that might be relevant to the new feature.
+    -   **How to use:** Formulate a short, keyword-based query (e.g., "authentication patterns", "API design guidelines").
+-   **`rag_search_code_examples`:**
+    -   **When to use:** To find concrete examples of how similar features have been implemented in the past.
+    -   **How to use:** Search for code related to the feature being discussed (e.g., "database connection pool", "React async component").
+-   **`find_documents`:**
+    -   **When to use:** To search for existing PRDs, design documents, or project plans related to the current topic. This helps avoid reinventing the wheel.
+    -   **How to use:** Requires a `project_id`. You may need to ask the user for a relevant project to search within. Search with a simple query (e.g., "user profile feature").
+"""
