@@ -1,10 +1,16 @@
 # Archon Gemini CLI Extension
 
-This extension integrates the Archon workflow directly into the Gemini CLI, providing a seamless experience for managing your projects and tasks.
+[![CI](https://github.com/cwest/archon-gemini-cli-extension/actions/workflows/ci.yml/badge.svg)](https://github.com/cwest/archon-gemini-cli-extension/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Code Quality](https://img.shields.io/badge/Code%20Quality-Linted-success.svg)](https://github.com/cwest/archon-gemini-cli-extension/actions/workflows/ci.yml)
+
+Archon is a powerful task and knowledge management system designed to be the 'brain' for AI coding assistants. This extension brings the full power of the Archon workflow directly into the [Gemini CLI](https://github.com/google/gemini-cli), transforming your AI pair programmer into a stateful project manager that can create, execute, and track development plans, search knowledge bases, and manage features from end to end.
+
+This extension integrates the Archon workflow directly into the [Gemini CLI](https://github.com/google/gemini-cli), providing a seamless experience for managing your projects and tasks.
 
 ## Prerequisites
 
-Before you can use this extension, you must have the Archon MCP server running locally.
+Before you can use this extension, you must have the [Archon MCP](https://github.com/coleman00/Archon) server running locally.
 
 ## Installation
 
@@ -40,6 +46,11 @@ This extension provides the following custom commands, listed in a logical workf
 - `/archon:kb-sources`: List available sources in the Archon knowledge base.
 - `/archon:kb-find-docs`: Find documents in the Archon knowledge base by keyword.
 - `/archon:kb-search`: Search the Archon knowledge base for content using RAG.
+
+## Dependencies
+
+-   [uv](https://docs.astral.sh/uv/): A high-performance Python package manager.
+-   [poethepoet](https://github.com/nat-n/poethepoet): A versatile task runner for Python projects.
 
 ## Getting Started
 
