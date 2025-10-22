@@ -18,13 +18,13 @@ managing your projects and tasks.
 ## Prerequisites
 
 Before you can use this extension, you must have the
-[Archon MCP](https://github.com/coleman00/Archon) server running locally.
+[Archon MCP](https://github.com/coleam00/Archon) server running locally.
 
 ## Installation
 
 1.  Install the extension using the `gemini` command:
     ```shell
-    gemini extensions install https://github.com/cwest/archone-gemini-cli-extension
+    gemini extensions install https://github.com/cwest/archon-gemini-cli-extension
     ```
 
 ## Configuration
