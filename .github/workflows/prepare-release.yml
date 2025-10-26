@@ -201,69 +201,58 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+name: Prepare Release
 
-[project]
-name = "archon-gemini-cli-extension"
-version = "0.1.0"
-description = "An Archon-powered Gemini CLI extension for advanced, AI-driven software development workflows."
-readme = "README.md"
-requires-python = ">=3.14.0"
-license = { file = "LICENSE" }
-authors = [
-  { name = "Casey West", email = "casey@geeknest.com" }
-]
-keywords = ["gemini", "cli", "extension", "archon", "ai"]
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: Apache Software License",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.14",
-]
-dependencies = [
-    "gitpython>=3.1.45",
-    "python-frontmatter>=1.1.0",
-]
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: 'Version bump type'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+        - patch
+        - minor
+        - major
 
-[project.urls]
-Homepage = "https://github.com/cwest/archon-gemini-cli-extension"
-Repository = "https://github.com/cwest/archon-gemini-cli-extension"
-"Bug Tracker" = "https://github.com/cwest/archon-gemini-cli-extension/issues"
+permissions:
+  contents: write
+  pull-requests: write
 
+jobs:
+  prepare-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-[dependency-groups]
-dev = [
-    "pre-commit>=4.3.0",
-    "ruff>=0.14.1",
-    "poethepoet>=0.27.0",
-    "commitizen>=3.13.0",
-]
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
 
-[tool.poe.tasks]
-build = [
-    { cmd = "python src/build.py" },
-    { cmd = "pre-commit run --all-files" },
-]
-lint = "ruff check ."
-format = "ruff format ."
-test = "pytest"
+      - name: Install uv
+        run: pip install uv
 
-[tool.ruff]
-line-length = 88
+      - name: Install dependencies
+        run: uv sync --dev
 
-[tool.ruff.lint]
-select = ["E", "F", "W", "I"]
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-[tool.ruff.format]
-quote-style = "double"
+      - name: Bump version and update changelog
+        run: uv run cz bump --increment ${{ inputs.bump }} --yes --files-only --changelog
 
-[tool.commitizen]
-name = "cz_conventional_commits"
-tag_format = "v$version"
-version_scheme = "semver"
-version_provider = "pep621"
-update_changelog_on_bump = true
-major_version_zero = true
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release/next
+          title: "🔧 chore(release): prepare next release"
+          body: "Automated release preparation. Bumps version and updates changelog."
+          commit-message: "🔧 chore(release): prepare next release"
