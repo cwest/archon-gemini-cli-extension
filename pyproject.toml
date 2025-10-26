@@ -207,7 +207,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "archon-gemini-cli-extension"
-version = "0.1.0"
+version = "0.2.0"
 description = "An Archon-powered Gemini CLI extension for advanced, AI-driven software development workflows."
 readme = "README.md"
 requires-python = ">=3.14.0"

@@ -1,0 +1,127 @@
+## v0.2.0 (2025-10-26)
+
+
+- 🔧 chore(config): configure commitizen to support emojis
+- ✨ feat(ci): enhance sync and release workflows
+- This commit introduces several improvements to the CI/CD pipelines:
+- Sync Workflow Improvements:
+- The sync workflow now continues even if the build step fails (e.g., due to pre-commit hooks modifying files), ensuring PRs are still created.
+- Implemented an optimization to only run the expensive build/transform process when the `archon-example-workflow` directory in the upstream repository has actually changed.
+- Added the current date to the automatically created Pull Request title and commit message for better traceability.
+- Introduced `.archon_sync_state` to track the last synced commit hash.
+- Release Automation:
+- Added a `prepare-release.yml` workflow that can be manually triggered to bump the version (major/minor/patch) and update `CHANGELOG.md` using `commitizen`.
+- Added a `tag-release.yml` workflow that automatically creates and pushes a git tag when a release preparation PR (with a specific commit message format) is merged into `main`.
+- Added `RELEASE.md` to document the new automated release process.
+- Other Changes:
+- Added `commitizen` to development dependencies in `pyproject.toml`.
+- Updated `.gitignore` to include `.gemini/` and `.gemini-clipboard/`.
+- 📝 docs(readme): correct installation URL typo
+- 📝 docs(readme): fix broken links and improve formatting
+- Corrected the links for the Gemini CLI, which were pointing to the GitHub repository instead of the official website (geminicli.com).
+- Additionally, this commit:
+- Adds a link to an external article explaining the concept of "Product Requirements Prompts" (PRPs).
+- Improves overall readability by re-wrapping long lines and adjusting spacing.
+
+## v0.1.0 (2025-10-20)
+
+
+- ♻️ refactor(build): robust poe tasks and ci consistency
+- - Updates the poe build task to be a sequence that runs pre-commit after the python build script to ensure license headers are always applied.
+- Standardizes CI workflows (ci.yml, sync.yml) to use the poe build and poe lint tasks instead of direct calls.
+- Corrects the local development setup instructions in contributing.md to use uv sync --dev.
+- 📝 docs(planning): create implementation plan for python packaging
+- Adds the detailed implementation plan for aligning pyproject.toml with modern Python packaging best practices, as required by PRD-05.
+- The plan outlines the tasks needed to:
+- Add a [build-system] table
+- Complete the [project] metadata
+- Centralize tool configuration for ruff
+- 📝 docs(planning): add PRD for python packaging best practices
+- This commit introduces a new Product Requirements Document (PRD) focused on aligning the project's packaging and release process with modern Python best practices.
+- The PRD outlines the requirements for updating the pyproject.toml to include a [build-system] table, complete project metadata, and centralized tool configuration.
+- 📝 docs(project): enhance project documentation
+- This commit improves the project's documentation to provide a better developer experience.
+- Key changes include updates to README.md and docs/contributing.md, such as adding badges, a dependencies section, a guide for local GitHub Actions testing, and correcting the license information.
+- 📝 docs(planning): add PRP for enhanced project documentation
+- This commit introduces the Project Requirements Prompt (PRP), which serves as the detailed implementation plan for enhancing the project's documentation.
+- The plan outlines the tasks required to improve the README.md and docs/contributing.md, including adding badges, dependency information, local testing guides, and ensuring all links are up-to-date.
+- 📝 docs(planning): add PRD for enhanced project documentation
+- This commit introduces a new Product Requirements Document (PRD) focused on improving the `README.md` and `docs/contributing.md` files.
+- The PRD outlines the requirements for adding project badges, creating a dedicated dependencies section, and ensuring all tools and services are linked to their homepages. It also includes a plan to add a guide for testing GitHub Actions locally using `act`.
+- ✨ feat(requirements): implement /archon:requirements command
+- This commit introduces the new '/archon:requirements' command, a powerful AI assistant for creating and refining Product Requirements Documents (PRDs).
+- The command features a state-driven, interactive workflow for creating PRDs from scratch and an automated mode for rewriting existing drafts. It is designed to guide users toward clear, actionable, and well-structured requirements.
+- This commit also includes updates to the README.md to document the new command, correct existing command descriptions, and reorder the command list for better usability.
+- 📝 docs(planning): add PRP for AI-assisted PRD generation
+- This commit introduces the Product Requirements Prompt (PRP), which serves as the detailed implementation plan for the '/archon:requirements' command.
+- The plan outlines a phased approach, starting with the creation of the unified command file and moving into detailed prompt engineering for the interactive and automatic modes. It also defines a state-driven architecture for the prompt to manage the complex user workflows.
+- 📝 docs(planning): add PRD for AI-assisted PRD generation
+- This commit introduces a new Product Requirements Document for a feature that will help users create and refine PRDs directly within the Gemini CLI.
+- The feature includes two primary modes:
+- An interactive, collaborative mode for building PRDs from scratch.
+- An automatic mode for refining existing PRD drafts.
+- The PRD was developed collaboratively, incorporating research on modern, AI-centric best practices and refining the user experience to be intuitive and flexible.
+- 🔧 chore(project): correct PRP naming convention
+- Renames PRPs/01-developer-experience-enhancements.md to PRPs/01a-developer-experience-enhancements.md to align with the established naming convention for PRPs that are part of a larger PRD.
+- ✨ feat(ci): implement and test github actions workflow
+- This commit introduces a robust GitHub Actions workflow for continuous integration and release management. It also includes the necessary configuration to enable local testing of the workflow using `act`.
+- Key changes:
+- Implemented a CI workflow that runs on push and pull requests to the main branch.
+- Implemented a release workflow that triggers on the creation of a new tag.
+- Added `event.json` to facilitate local testing of the release workflow with `act`.
+- Squashed a series of commits that were created during the initial implementation and testing of the workflows.
+- 📝 docs(planning): add PRD for github workflow testing
+- ✨ feat(dx): enhance developer experience
+- This commit improves the developer experience by:
+- - Integrating `poethepoet` as a task runner for common tasks like building, linting, and testing.
+- Adding `ruff` to the pre-commit hooks to enforce consistent code style and quality.
+- Rewriting the `README.md` to be more user-focused.
+- Updating the `docs/contributing.md` with the new development setup.
+- Reorganizing the documentation structure by renaming the `requirements` directory to `PRDs` and implementing a numbered prefixing scheme.
+- 📝 docs(planning): add PRD for developer experience
+- Adds a new Product Requirements Document (PRD) that outlines the plan to improve the developer and contributor experience for the project.
+- This PRD covers:
+- Codebase cleanup
+- Research and implementation of developer tooling
+- A complete overhaul of the README.md and contributing documentation
+- Integration of ruff for linting and formatting in pre-commit hooks
+- ✨ feat(commands): implement utility commands and enhance specificity
+- This commit implements the plan outlined in the PRPs/implement-utility-commands-and-details.md document.
+- Key changes include:
+- - Build Script (src/build.py):
+  - Enhanced transformation logic to introduce greater specificity into the create-plan and execute-plan command prompts.
+  - The create-plan prompt now explicitly instructs the model to use the full suite of RAG tools.
+  - The execute-plan prompt now explicitly instructs the model to adopt the validator persona and generate unit tests.
+- Utility Commands:
+  - Added new utility commands for knowledge base and project management:
+    - /archon:kb search
+    - /archon:kb sources
+    - /archon:kb find-docs
+    - /archon:project features
+    - /archon:project find
+- 📝 docs(planning): add implementation plan for utility commands
+- Adds the detailed implementation plan to address missing requirements identified during a comparative analysis. The plan outlines the steps to add utility commands and introduce greater specificity into the build script and command prompts.
+- ✨ feat(project): initialize extension and build automation
+- This commit establishes the foundational structure, source code, and automation pipelines for the Gemini Archon Workflow Extension. It implements the initial development plan outlined in the `PRPs/initial-development.md` document.
+- The core of this commit is the automated build process which transforms the source `archon-example-workflow` into a functional Gemini CLI extension.
+- Key additions include:
+- - **Build Script (`src/build.py`):** A Python script that automates the entire conversion process. It ingests the source repository, transforms the Claude-specific context files into a unified `GEMINI.md`, and converts the command definition markdown files into the required `.toml` format.
+- - **Generated Extension Files:**
+  - `GEMINI.md`: The master context file that provides the Gemini model with the necessary personas and workflow instructions.
+  - `commands/archon/*.toml`: The generated command definitions for the extension.
+- - **CI/CD Automation (`.github/workflows/`):**
+  - `ci.yml`: A continuous integration workflow that lints, builds, and verifies that the generated extension files are up-to-date and committed.
+  - `release.yml`: Automates the creation of GitHub releases when a new version tag is pushed.
+  - `sync.yml`: A scheduled workflow to automatically check the upstream Archon source repository for changes and create a pull request with updates.
+- - **Project Configuration:**
+  - `pyproject.toml` & `uv.lock`: Defines the Python project and its dependencies, managed by `uv`.
+  - `gemini-extension.json`: The manifest file for the Gemini CLI extension.
+  - `.gitignore`: Updated to exclude the cloned `archon_source` directory.
+  - `.pre-commit-config.yaml`: Updated to standardize license headers.
+- 📝 docs(planning): add initial implementation plan
+- Adds the detailed, research-validated implementation plan for the Gemini Archon Workflow Extension. This plan is based on the comprehensive requirements specification and outlines the project's architecture, phases, tasks, and automation strategy.
+- 📝 docs(project): add initial development requirements
+- Adds the initial, empty `initial-development.md` file to track project requirements.
+- 📦 build(project): add initial .gitignore for Python projects
+- Adds a standard .gitignore file tailored for Python projects. This includes patterns to ignore common Python artifacts, virtual environments, IDE-specific files, build outputs, and testing artifacts.
+- 🔧 chore(init): Boilerplate for new Google open source project
