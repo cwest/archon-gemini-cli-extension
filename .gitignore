@@ -30,3 +30,5 @@ Thumbs.db
 
 archon_source/
 .secrets
+.gemini-clipboard/
+.gemini/

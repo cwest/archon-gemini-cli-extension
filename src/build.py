@@ -215,16 +215,19 @@ AGENTS_DIR = os.path.join(SOURCE_DIR, ".claude", "agents")
 COMMANDS_DIR = os.path.join(SOURCE_DIR, ".claude", "commands")
 OUTPUT_GEMINI_MD = "GEMINI.md"
 OUTPUT_COMMANDS_DIR = os.path.join("commands", "archon")
+SYNC_STATE_FILE = ".archon_sync_state"
 
 
 def ingest_source_repo():
     """
     Clones the Archon repository if it doesn't exist locally, or pulls the
-    latest changes if it does.
+    latest changes if it does. Returns the commit hash of the last change
+    to the archon-example-workflow directory.
     """
+    repo = None
     if not os.path.exists(ARCHON_REPO_DIR):
         print(f"Cloning Archon repository into '{ARCHON_REPO_DIR}'...")
-        Repo.clone_from(ARCHON_REPO_URL, ARCHON_REPO_DIR)
+        repo = Repo.clone_from(ARCHON_REPO_URL, ARCHON_REPO_DIR)
         print("Clone complete.")
     else:
         print(
@@ -237,6 +240,14 @@ def ingest_source_repo():
             print("Pull complete.")
         except GitCommandError as e:
             print(f"Error pulling latest changes: {e}")
+            repo = Repo(ARCHON_REPO_DIR)
+
+    if repo:
+        # Get the last commit that touched the relevant directory
+        return repo.git.log(
+            "-n", "1", "--pretty=format:%H", "--", "archon-example-workflow"
+        )
+    return None
 
 
 def transform_context():
@@ -349,6 +360,22 @@ def transform_commands():
 
 
 if __name__ == "__main__":
-    ingest_source_repo()
-    transform_context()
-    transform_commands()
+    current_commit = ingest_source_repo()
+
+    if current_commit:
+        last_synced_commit = None
+        if os.path.exists(SYNC_STATE_FILE):
+            with open(SYNC_STATE_FILE, "r") as f:
+                last_synced_commit = f.read().strip()
+
+        if current_commit == last_synced_commit:
+            print("Archon source (archon-example-workflow) is up-to-date.")
+        else:
+            print(f"Syncing from commit: {current_commit}")
+            transform_context()
+            transform_commands()
+            with open(SYNC_STATE_FILE, "w") as f:
+                f.write(current_commit)
+    else:
+        print("Failed to get current commit hash from Archon repository.")
+        exit(1)
