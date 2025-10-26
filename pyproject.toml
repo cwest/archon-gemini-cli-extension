@@ -239,6 +239,7 @@ dev = [
     "pre-commit>=4.3.0",
     "ruff>=0.14.1",
     "poethepoet>=0.27.0",
+    "commitizen>=3.13.0",
 ]
 
 [tool.poe.tasks]
@@ -258,3 +259,11 @@ select = ["E", "F", "W", "I"]
 
 [tool.ruff.format]
 quote-style = "double"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "v$version"
+version_scheme = "semver"
+version_provider = "pep621"
+update_changelog_on_bump = true
+major_version_zero = true
