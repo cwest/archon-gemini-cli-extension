@@ -261,9 +261,15 @@ select = ["E", "F", "W", "I"]
 quote-style = "double"
 
 [tool.commitizen]
-name = "cz_conventional_commits"
+name = "cz_customize"
 tag_format = "v$version"
 version_scheme = "semver"
 version_provider = "pep621"
 update_changelog_on_bump = true
 major_version_zero = true
+
+[tool.commitizen.customize]
+schema_pattern = "(?s)^[^a-zA-Z0-9]*\\s?(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\\(\\S+\\))?!?: ([^\\n\\r]+)((\\n\\n.*)|(\\s*))?$"
+bump_pattern = "^[^a-zA-Z0-9]*\\s?(feat|fix|perf|refactor|revert|style|test|build|ci|docs|chore)"
+bump_map = {"^.+!$" = "MAJOR", "feat" = "MINOR", "fix" = "PATCH", "perf" = "PATCH", "refactor" = "PATCH"}
+change_type_order = ["BREAKING CHANGE", "feat", "fix", "perf", "refactor", "style", "test", "build", "ci", "docs", "chore"]
