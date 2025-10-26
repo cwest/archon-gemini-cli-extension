@@ -203,7 +203,7 @@ on:
 
 jobs:
   tag:
-    if: startsWith(github.event.head_commit.message, '🔖 chore(release):')
+    if: startsWith(github.event.head_commit.message, '🔧 chore(release):')
     runs-on: ubuntu-latest
     permissions:
       contents: write
